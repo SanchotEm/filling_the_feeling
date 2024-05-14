@@ -15,7 +15,7 @@ config/name_localized={
 "en_GB": "Filling the feeling"
 }
 config/tags=PackedStringArray("gamejam", "разработка")
-run/main_scene="res://Sancho/Сцены/тестовая_комната.tscn"
+run/main_scene="res://Sunstone/Levels/level Blockout.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/image="res://Sancho/Материалы/Изображения/логотип/PNG/GWJ-Full-Logo-noBG-4k.png"
 config/icon="res://icon.svg"
