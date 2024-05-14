@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://edwnx3yhdbxo"]
+
+[ext_resource type="Script" path="res://Sancho/Скрипты/управление_игрок.gd" id="1_fo6ws"]
+[ext_resource type="Script" path="res://Sancho/Скрипты/модуль_взаимодействия.gd" id="2_vgaao"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8d26a"]
+radius = 0.2
+height = 1.6
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cm6nb"]
+radius = 0.2
+height = 1.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_23mb5"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6hlyj"]
+radius = 1.0
+
+[node name="игрок" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_fo6ws")
+"чувствительность" = 0.52
+"СКОРОСТЬ" = 7.5
+"FOV_движение" = 75
+
+[node name="голова" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+
+[node name="камера1лицо" type="Camera3D" parent="голова"]
+fov = 100.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="голова"]
+transform = Transform3D(1, 0, 0, 0, 0.866357, 0.499426, 0, -0.499426, 0.866357, 0, 0, 0)
+spring_length = 2.0
+margin = 2.0
+
+[node name="камера3лицо" type="Camera3D" parent="голова/SpringArm3D"]
+current = true
+fov = 70.0
+
+[node name="коллизия" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_8d26a")
+
+[node name="тело" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+layers = 2
+mesh = SubResource("CapsuleMesh_cm6nb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="тело"]
+transform = Transform3D(0.481544, 0, 0, 0, 0.481544, 0, 0, 0, 0.481544, 0, 0.143028, -0.291304)
+layers = 2
+mesh = SubResource("SphereMesh_23mb5")
+
+[node name="модуль_взаимодействия" type="Node3D" parent="."]
+script = ExtResource("2_vgaao")
+
+[node name="обнаружение" type="Area3D" parent="модуль_взаимодействия"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="коллизия" type="CollisionShape3D" parent="модуль_взаимодействия/обнаружение"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CylinderShape3D_6hlyj")
+
+[node name="ГУИ" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="контейнер_взаимодействия" type="VBoxContainer" parent="ГУИ"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -127.0
+offset_right = 59.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_constants/separation = 75
+alignment = 1
+
+[connection signal="body_entered" from="модуль_взаимодействия/обнаружение" to="модуль_взаимодействия" method="вход_в_радиус"]
+[connection signal="body_exited" from="модуль_взаимодействия/обнаружение" to="модуль_взаимодействия" method="выход_из_радиуса"]

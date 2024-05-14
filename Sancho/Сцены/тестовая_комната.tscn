@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgvggug3du58t"]
+
+[ext_resource type="PackedScene" uid="uid://edwnx3yhdbxo" path="res://Sunstone/player.tscn" id="1_hfixd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3case"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x3kre"]
+
+[sub_resource type="Environment" id="Environment_sdnan"]
+background_mode = 1
+background_color = Color(0.745098, 0.831373, 0.94902, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_scm5h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3prcg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_l6al1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_djvl1"]
+
+[node name="тестовая_комната" type="Node3D"]
+
+[node name="MeshInstance3D" type="StaticBody3D" parent="."]
+transform = Transform3D(213.058, 0, 0, 0, 0.2, 0, 0, 0, 131.279, 0, -0.2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D"]
+shape = SubResource("BoxShape3D_3case")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+mesh = SubResource("BoxMesh_x3kre")
+
+[node name="игрок" parent="." instance=ExtResource("1_hfixd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.487663, 0, 10.3268)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sdnan")
+camera_attributes = SubResource("CameraAttributesPractical_scm5h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.952486, 0.304582, 0, -0.304582, 0.952486, 0, 1.23382, 0)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.689203, 0)
+physics_material_override = SubResource("PhysicsMaterial_3prcg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_l6al1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_djvl1")

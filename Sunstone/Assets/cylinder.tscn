@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://da7ymi82oq6nu"]
+
+[ext_resource type="Texture2D" uid="uid://ch55pcn658occ" path="res://KennyPrototypeTextures/PNG/Orange/texture_03.png" id="1_olthu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pifo4"]
+albedo_texture = ExtResource("1_olthu")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D"]
+use_collision = true
+material = SubResource("StandardMaterial3D_pifo4")

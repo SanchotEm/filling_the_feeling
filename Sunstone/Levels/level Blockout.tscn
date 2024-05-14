@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://srx4x3mxau4f"]
+
+[ext_resource type="PackedScene" uid="uid://edwnx3yhdbxo" path="res://Sunstone/player.tscn" id="1_3v2an"]
+[ext_resource type="PackedScene" uid="uid://c2itowiawwyl8" path="res://Sunstone/Assets/cube.tscn" id="2_u1dn0"]
+
+[sub_resource type="Environment" id="Environment_n2xb2"]
+background_mode = 1
+background_color = Color(0.745098, 0.831373, 0.94902, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ewwij"]
+
+[node name="LevelBlockout" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n2xb2")
+camera_attributes = SubResource("CameraAttributesPractical_ewwij")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.952486, 0.304582, 0, -0.304582, 0.952486, 0, 1.23382, 0)
+shadow_enabled = true
+
+[node name="игрок" parent="." instance=ExtResource("1_3v2an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.586278, 0)
+
+[node name="Node3D" parent="." instance=ExtResource("2_u1dn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75086, 0.022588, 21.8613)
+size = Vector3(181.689, 1, 140.265)
+
+[node name="Node3D2" parent="." instance=ExtResource("2_u1dn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6342, 14.399, -2.3078)
+size = Vector3(17.4509, 29.6283, 24.3983)

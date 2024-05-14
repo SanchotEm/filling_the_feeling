@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2itowiawwyl8"]
+
+[ext_resource type="Texture2D" uid="uid://ch55pcn658occ" path="res://KennyPrototypeTextures/PNG/Orange/texture_03.png" id="1_rmdyo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4np1"]
+albedo_texture = ExtResource("1_rmdyo")
+
+[node name="Node3D" type="CSGBox3D"]
+use_collision = true
+material = SubResource("StandardMaterial3D_r4np1")

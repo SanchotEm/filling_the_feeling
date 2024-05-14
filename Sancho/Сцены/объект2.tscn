@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh2r3o23acwjc"]
+
+[ext_resource type="Script" path="res://Sancho/Скрипты/объект_взаимодействия.gd" id="1_hdn8d"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gdxht"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sqh2g"]
+albedo_color = Color(0.247059, 0.176471, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_32xfj"]
+material = SubResource("StandardMaterial3D_sqh2g")
+
+[node name="объект" type="StaticBody3D"]
+transform = Transform3D(0.246728, 0, 0, 0, 0.246728, 0, 0, 0, 0.246728, 0, 0, 0)
+collision_layer = 2
+metadata/interactable = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_gdxht")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_32xfj")
+
+[node name="Объект_взаимодействия" type="Node" parent="."]
+script = ExtResource("1_hdn8d")
